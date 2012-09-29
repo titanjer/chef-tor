@@ -29,7 +29,15 @@ template '/etc/privoxy/config' do
   owner 'privoxy'
   group 'privoxy'
   mode '0600'
+  variables node[:privoxy].merge(:forward_socks5 => node[:tor][:listen])
   notifies :restart, 'service[privoxy]'
+end
+
+template "/etc/tor/torrc" do
+  source "torrc.erb"
+  mode '0600'
+  variables node[:tor]
+  notifies :restart, "service[tor]"
 end
 
 service 'privoxy' do
