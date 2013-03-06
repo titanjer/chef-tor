@@ -24,6 +24,12 @@ package value_for_platform(
   ['debian', 'ubuntu'] => { 'default' => 'tor' }
 )
 
+#Create group privoxy if it doesn't exist using the users Lightweight Resource
+users_manage "privoxy" do
+  group_id 8118
+  action :create
+end
+
 template '/etc/privoxy/config' do
   source 'privoxy_config.erb'
   owner 'privoxy'
