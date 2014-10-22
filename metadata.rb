@@ -1,3 +1,4 @@
+name             "tor"
 maintainer       "Cramer Development, Inc."
 maintainer_email "sysadmin@cramerdev.com"
 license          "apache2"
